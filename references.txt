@@ -1,0 +1,16 @@
+## Papers
+https://ccl.northwestern.edu/1998/ConnectedScience.pdf -- paper on connected science 
+
+https://link.springer.com/article/10.1007/s10682-021-10140-x -- paper on wolf_sheep model
+
+## Websites
+http://ccl.northwestern.edu/netlogo/models/WolfSheepPredation -- Netlogo model of wolf-sheep
+
+## NetLogo Model
+Wilensky, U. (1997). NetLogo Wolf Sheep Predation model. http://ccl.northwestern.edu/netlogo/models/WolfSheepPredation. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
+
+## Lotka-Volterra equations
+https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations
+
+##Mesa
+ter Hoeven, E., Kwakkel, J., Hess, V., Pike, T., Wang, B., rht, & Kazil, J. (2025). Mesa 3: Agent-based modeling with Python in 2025. Journal of Open Source Software, 10(107), 7668. https://doi.org/10.21105/joss.07668
