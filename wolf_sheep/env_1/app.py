@@ -8,6 +8,20 @@ from mesa.visualization import (
     make_plot_component,
 )
 from mesa.visualization.components import AgentPortrayalStyle
+from parameters import (
+    INITIAL_SHEEP,
+    INITIAL_WOLVES,
+    RANDOM_SEED,
+    REPRODUCE_MAX,
+    REPRODUCE_MIN,
+    REPRODUCE_STEP,
+    SHEEP_POPULATION_MAX,
+    SHEEP_POPULATION_MIN,
+    SHEEP_REPRODUCE,
+    WOLF_POPULATION_MAX,
+    WOLF_POPULATION_MIN,
+    WOLF_REPRODUCE,
+)
 
 
 def wolf_sheep_portrayal(agent):
@@ -31,18 +45,34 @@ def wolf_sheep_portrayal(agent):
 model_params = {
     "rng": {
         "type": "InputText",
-        "value": 42,
+        "value": RANDOM_SEED,
         "label": "Random Seed",
     },
-    "initial_sheep": Slider("Initial Sheep Population", 100, 10, 300),
-    "sheep_reproduce": Slider("Sheep Reproduction Rate", 0.04, 0.01, 1.0, 0.01),
-    "initial_wolves": Slider("Initial Wolf Population", 10, 5, 100),
+    "initial_sheep": Slider(
+        "Initial Sheep Population",
+        INITIAL_SHEEP,
+        SHEEP_POPULATION_MIN,
+        SHEEP_POPULATION_MAX,
+    ),
+    "sheep_reproduce": Slider(
+        "Sheep Reproduction Rate",
+        SHEEP_REPRODUCE,
+        REPRODUCE_MIN,
+        REPRODUCE_MAX,
+        REPRODUCE_STEP,
+    ),
+    "initial_wolves": Slider(
+        "Initial Wolf Population",
+        INITIAL_WOLVES,
+        WOLF_POPULATION_MIN,
+        WOLF_POPULATION_MAX,
+    ),
     "wolf_reproduce": Slider(
         "Wolf Reproduction Rate",
-        0.05,
-        0.01,
-        1.0,
-        0.01,
+        WOLF_REPRODUCE,
+        REPRODUCE_MIN,
+        REPRODUCE_MAX,
+        REPRODUCE_STEP,
     )
 }
 
@@ -62,7 +92,7 @@ lineplot_component = make_plot_component(
     post_process=post_process_lines,
 )
 
-model = WolfSheep(scenario=WolfSheepScenario(grass=False))
+model = WolfSheep(scenario=WolfSheepScenario())
 
 renderer = SpaceRenderer(
     model,

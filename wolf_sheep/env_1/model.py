@@ -16,6 +16,15 @@ from mesa.datacollection import DataCollector
 from mesa.discrete_space import OrthogonalVonNeumannGrid
 from agents import Sheep, Wolf
 from mesa.experimental.scenarios import Scenario
+from parameters import (
+    GRASS_ENABLED,
+    GRID_HEIGHT,
+    GRID_WIDTH,
+    INITIAL_SHEEP,
+    INITIAL_WOLVES,
+    SHEEP_REPRODUCE,
+    WOLF_REPRODUCE,
+)
 
 
 class WolfSheepScenario(Scenario):
@@ -36,12 +45,13 @@ class WolfSheepScenario(Scenario):
         rng: Random rng
     """
 
-    width: int = 100
-    height: int = 100
-    initial_sheep: int = 100
-    initial_wolves: int = 50
-    sheep_reproduce: float = 0.04
-    wolf_reproduce: float = 0.05
+    width: int = GRID_WIDTH
+    height: int = GRID_HEIGHT
+    initial_sheep: int = INITIAL_SHEEP
+    initial_wolves: int = INITIAL_WOLVES
+    sheep_reproduce: float = SHEEP_REPRODUCE
+    wolf_reproduce: float = WOLF_REPRODUCE
+    grass: bool = GRASS_ENABLED
 
 
 class WolfSheep(Model):

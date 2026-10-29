@@ -1,14 +1,21 @@
 from mesa.discrete_space import CellAgent
 
+from parameters import (
+    ENERGY_COST_PER_STEP,
+    SHEEP_REPRODUCE,
+    SHEEP_STARTING_ENERGY,
+    WOLF_REPRODUCE,
+    WOLF_STARTING_ENERGY,
+)
+
 
 class Animal(CellAgent):
     """The base animal class."""
-    # Deafult parameters for all animals (can be overridden in subclasses)
     def __init__(
         self, 
         model, 
-        energy=8, 
-        p_reproduce=0.04, 
+        energy,
+        p_reproduce,
         cell=None
     ):
         """Initialize an animal.
@@ -29,9 +36,8 @@ class Animal(CellAgent):
         """Create offspring. """
         self.__class__(
             self.model,
-            self.energy,
-            self.p_reproduce,
-            self.cell,
+            p_reproduce=self.p_reproduce,
+            cell=self.cell,
         )
 
     def step(self):
@@ -43,7 +49,7 @@ class Animal(CellAgent):
         self.feed()
 
         # Decrease energy each step
-        self.energy -= 1
+        self.energy -= ENERGY_COST_PER_STEP
 
         # Handle death and reproduction
         if self.energy < 0:
@@ -66,8 +72,8 @@ class Sheep(Animal):
     def __init__(
         self,
         model,
-        energy=100,
-        p_reproduce=0.04,
+        energy=SHEEP_STARTING_ENERGY,
+        p_reproduce=SHEEP_REPRODUCE,
         cell=None,
     ):
         super().__init__(model, energy, p_reproduce, cell)
@@ -79,12 +85,12 @@ class Wolf(Animal):
     def __init__(
         self,
         model,
-        energy=100,
-        p_reproduce=0.04,
+        energy=WOLF_STARTING_ENERGY,
+        p_reproduce=WOLF_REPRODUCE,
         cell=None,
     ):
         super().__init__(model, energy, p_reproduce,cell)
-        self.initial_energy = energy 
+        self.initial_energy = WOLF_STARTING_ENERGY
 
     def feed(self):
         """If possible, eat a sheep at current location."""
@@ -94,5 +100,3 @@ class Wolf(Animal):
                 sheep.remove()
             # Reset energy to initial value after eating a sheep
             self.energy = self.initial_energy
-
-
