@@ -51,6 +51,35 @@ lineplot_component = make_plot_component(
     post_process=post_process_lines,
 )
 
+energy_plot_component = make_plot_component(
+    {
+        "Wolves total energy": "tab:red",
+        "Sheep total energy": "tab:blue",
+        "Grass energy": "tab:green",
+    },
+    post_process=post_process_lines,
+)
+
+average_energy_plot_component = make_plot_component(
+    {
+        "Wolves average energy": "tab:red",
+        "Sheep average energy": "tab:blue",
+    },
+    post_process=post_process_lines,
+)
+
+speed_plot_component = make_plot_component(
+    {
+        "Sheep speed 1": "lightblue",
+        "Sheep speed 2": "deepskyblue",
+        "Sheep speed 3": "darkblue",
+        "Wolves speed 1": "lightcoral",
+        "Wolves speed 2": "red",
+        "Wolves speed 3": "darkred",
+    },
+    post_process=post_process_lines,
+)
+
 model = WolfSheep(scenario=WolfSheepScenario())
 
 renderer = SpaceRenderer(
@@ -63,8 +92,16 @@ renderer.draw_agents()
 page = SolaraViz(
     model,
     renderer,
-    components=[lineplot_component, CommandConsole],
+    components=[
+        lineplot_component,
+        energy_plot_component,
+        average_energy_plot_component,
+        speed_plot_component,
+        CommandConsole,
+    ],
     model_params=model_params,
+    play_interval=250,
+    render_interval=5,
     name="Wolf Sheep",
 )
 page  # noqa

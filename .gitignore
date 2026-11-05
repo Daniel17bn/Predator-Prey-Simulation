@@ -1,9 +1,40 @@
 __pycache__/
 *.py[cod]
+
+# Local Python environments and environment files
 .venv/
 venv/
 env/
 .env
+
+# Editor settings
 .vscode/
 .idea/
+
+# Test, coverage, and type-checker caches
+.pytest_cache/
+wolf_sheep_env/simulation_output/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.pyre/
+.tox/
+.nox/
+
+# Build and packaging output
+build/
+dist/
+*.egg-info/
+
+# Local logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+
 Notes.txt
+Prompt.md
